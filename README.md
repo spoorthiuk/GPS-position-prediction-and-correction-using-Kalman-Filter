@@ -11,10 +11,10 @@ In addition to this u-Blox Neo6M GPS module is used to measure the vehicle’s p
 The proposed system consists of a triaxial Accelerometer, Gyroscope and Magnetometer along with position and velocity measured by the GPS module. Raspberry Pi 3 is used to receive the sensor readings and perform real time analysis. 
 An adaptive filter called Kalman Filter is used to predict and correct the state vector. Initially, the diagonal elements in the covariance matrix used in the Kalman Filter are populated with the standard deviation values of the state variables. As the number of iterations increases, the filter becomes more confident about its’ prediction and the standard deviation is reduced.
 
-                      ![image](https://user-images.githubusercontent.com/43513525/205542692-fb07c4f6-81e8-4b49-ba3e-4fe56edd4682.png)
+![image](https://user-images.githubusercontent.com/43513525/205542692-fb07c4f6-81e8-4b49-ba3e-4fe56edd4682.png)
 
 ## Linear Kalman Filter 
-The Kalman Filtering process involves 3 major steps: Predict, Correct and Update.
-                      ![image](https://user-images.githubusercontent.com/43513525/205558091-32e7974d-96b2-480b-871f-4f422c145574.png)
-                           Above is the flow diagram of a typical Kalman Filter
+The Kalman Filtering process involves 3 major steps: Predict, Correct and Update.   
+                      ![image](https://user-images.githubusercontent.com/43513525/205558091-32e7974d-96b2-480b-871f-4f422c145574.png)   
+                           Above is the flow diagram of a typical Kalman Filter   
 It’s a discrete-time process. In the predict stage, the algorithm makes the best possible prediction of the next state with the knowledge of physics.
