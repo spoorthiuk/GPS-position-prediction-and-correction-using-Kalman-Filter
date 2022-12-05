@@ -80,7 +80,7 @@ Following is the position plot.
 
 The Orange line indicates the GPS measured data and the Blue line indicates the Kalman Filter predicted data. We can observe some spikes in the GPS measured data. This is rectified by considering the previously predicted value as current value if the error is greater than 50 m.
 Following are the velocity plots obtained during real time prediction.  
-![image](https://user-images.githubusercontent.com/43513525/205562830-34b9bac9-0b9a-4e6c-b43a-49168bf00e68.png)  
+![image](https://user-images.githubusercontent.com/43513525/205563834-6a3c5a06-714d-4a29-b1c1-b43747ff5f21.png) 
 ![image](https://user-images.githubusercontent.com/43513525/205562849-3d3a7d3d-8227-41b5-a540-756f0882bec8.png)  
 ![image](https://user-images.githubusercontent.com/43513525/205562870-553bf25e-4d59-4476-ba31-8370b9b4ab58.png)  
 
