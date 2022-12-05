@@ -26,10 +26,35 @@ Below is the flow diagram of the the equations involved in the Kalman Filter pro
 ## Non-Linear Kalman Filter
 
 The proposed non-linear Kalman Filter system consists of two main stages. In the first stage, the orientation of the object is estimated and in the second stage, the Kalman Filter uses the estimated angles from the first step to estimate the position.  
-![image](https://user-images.githubusercontent.com/43513525/205559483-0e0255ef-1225-4496-851d-42d3ac734747.png)
+![image](https://user-images.githubusercontent.com/43513525/205559483-0e0255ef-1225-4496-851d-42d3ac734747.png)  
 In the first stage, we estimate the Euler angles, roll(θ), pitch(φ) and yaw(Ψ), to estimate the orientation of the object. These angles are used to transform vectors from body frame to the navigation frame.
-The Gyroscope gives the angular speed which can be integrated to obtain Euler angles (g_r, g_p, g_y) roll(![image](https://user-images.githubusercontent.com/43513525/205559607-61fec4a3-2ad9-43c8-92f8-b54dfbf0c002.png)
-), pitch( ) and yaw( ). The Magnetometer and Accelerometer’s readings are fused together by sensor fusion [6] to obtain Euler angles (f_r, f_p, f_y)  roll( ), pitch( ) and yaw( ).
-Set 1 : Fusion Euler angles ( ,   ,   ) : 
+The Gyroscope gives the angular speed which can be integrated to obtain Euler angles (g_r, g_p, g_y) roll(Θg), pitch(Φg) and yaw(Ψg). The Magnetometer and Accelerometer’s readings are fused together by sensor fusion [6] to obtain Euler angles (f_r, f_p, f_y)  roll(Θf), pitch(Φf) and yaw(Ψf).
+### Set 1 : Fusion Euler angles (Θf, Φf, Ψf) : 
+![image](https://user-images.githubusercontent.com/43513525/205560071-ff1dc231-0cba-41ee-abf4-8f71eb62c5df.png)  
+
+### Set 2 :  Gyroscope Euler angles (Θg, Φg, Ψg) :
+![image](https://user-images.githubusercontent.com/43513525/205560249-ff920183-ef06-43e6-a5a0-5a87b56a69c6.png)  
+
+These values are fed to a Kalman filter by considering fusion angles as the observed 
+values and gyroscope angles as the measured values. 
+The equations are modified as  
+![image](https://user-images.githubusercontent.com/43513525/205560628-42c0eedb-73ff-45ae-83cb-f7064b68a223.png)  
+
+The estimated Euler angels are used to construct rotation matrices  
+![image](https://user-images.githubusercontent.com/43513525/205560760-626bf091-dcae-4efe-96a9-56a73a2668b1.png)
+
+From theses matrices, we can find Direction Cosine Matrix (DCM) by matrix 
+multiplication.  
+![image](https://user-images.githubusercontent.com/43513525/205560836-cfd05160-3d94-4e9b-8584-65c8a0e9baaa.png)
+
+In the second stage, we estimate the position and velocity of the object. The 
+prediction stage is modified as  
+![image](https://user-images.githubusercontent.com/43513525/205560900-a118b112-f4b5-4f8f-ac8f-83917e757f8b.png)  
+
+And the correct and update stage is modified as  
+![image](https://user-images.githubusercontent.com/43513525/205560966-f201781b-4a5a-4fd4-8fe8-952950bf4aec.png)
+
+
+
 
 
