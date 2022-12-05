@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Realtime GPS Tracker</title>
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.19.0.min.js"></script>
+    <link rel="stylesheet" href="map.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </head>
+  <body>
+      <div class="bg"></div>
+     <div class="bg-others"> 
+    <div class="container">
+      <h1 >GPS Position Prediction And Correction Using Kalman Filter</h1>
+        <center><hr style="height:2px; border:none; color:#ffffff; background-color:#ffffff; width:35%; margin: 0 auto 0 auto;"></center>
+        <p>by Group 26</p>  
+        <center><button class="btn btn-success col-sm-3" id="action">Start</button></center><br>
+        <center><div id="map-canvas"></div></center>
+    </div>
+          </div>
+
+    <script>
+    window.lat1 = 12.5402506;
+    window.lng1 =  77.3332915;
+    //window.lat2 = 37.8850;
+    //window.lng2 = -122.5383;
+    window.lat2 = 12.5402506;
+    window.lng2 = 77.3332915;
+
+    var map;
+    var mark1;
+    var mark2;
+    var lineCoords1 = [];
+    var lineCoords2 = [];
+      
+    var initialize = function() {
+      map  = new google.maps.Map(document.getElementById('map-canvas'), {center:{lat:lat1,lng:lng1},zoom:20});
+      mark1 = new google.maps.Marker({position:{lat:lat1, lng:lng1}, map:map});
+      mark2=new google.maps.Marker({position:{lat:lat2, lng:lng2}, map:map});
+    };
+
+    window.initialize = initialize;
+
+    var redraw = function(payload) {
+      if(payload.message.lat1){
+      lat1 = payload.message.lat1;
+      lng1 = payload.message.lng1;
+      lat2 = payload.message.lat2;
+      lng2 = payload.message.lng2;
+
+      map.setCenter({lat:lat1, lng:lng1, alt:0});
+      mark1.setPosition({lat:lat1, lng:lng1, alt:0});
+      mark2.setPosition({lat:lat2, lng:lng2, alt:0});
+      
+      lineCoords1.push(new google.maps.LatLng(lat1, lng1));
+      lineCoords2.push(new google.maps.LatLng(lat2, lng2));
+
+      var lineCoordinatesPath1 = new google.maps.Polyline({
+        path: lineCoords1,
+        geodesic: true,
+        strokeColor: '#DC143C'
+      });
+      var lineCoordinatesPath2 = new google.maps.Polyline({
+        path: lineCoords2,
+        geodesic: true,
+        strokeColor: '#00FF00'
+      });
+      
+      lineCoordinatesPath1.setMap(map);
+      lineCoordinatesPath2.setMap(map);}
+    };
+
+    var pnChannel = "raspi-tracker";
+
+    var pubnub = new PubNub({
+      publishKey:   'pub-c-4e90d659-26ab-4067-82bd-ac6a8652ab32',
+      subscribeKey: 'sub-c-6f54acc4-04dd-11ec-91fa-62dfa3a98328'
+    });
+        
+    document.querySelector('#action').addEventListener('click', function(){
+        var text = document.getElementById("action").textContent;
+        if(text == "Start Tracking"){
+            pubnub.subscribe({channels: [pnChannel]});
+            pubnub.addListener({message:redraw});
+            document.getElementById("action").classList.add('btn-danger');
+            document.getElementById("action").classList.remove('btn-success');
+            document.getElementById("action").textContent = 'Stop Tracking';
+        }
+        else{
+            pubnub.unsubscribe( {channels: [pnChannel] });
+            document.getElementById("action").classList.remove('btn-danger');
+            document.getElementById("action").classList.add('btn-success');
+            document.getElementById("action").textContent = 'Start Tracking';
+        }
+        });
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASu_BGwKmRQQWl4VYT0PUpQKqW0yuilsM&callback=initialize"></script>
+  </body>
+</html>
