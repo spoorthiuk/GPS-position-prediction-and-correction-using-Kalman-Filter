@@ -66,23 +66,23 @@ The above figure is the position plot using the test data on Google earth. the r
 
 In the above plots, the Blue line indicates Kalman filter prediction, the Orange line indicates Measured values and the Green line indicates current Corrected values.
 Following are the Euler angle plots obtained while predicting the position using  the proposed system.
-![image](https://user-images.githubusercontent.com/43513525/205562437-c15be12a-8739-44f6-896d-7602ca498637.png)
-![image](https://user-images.githubusercontent.com/43513525/205562469-828ee8ca-2d8b-4cc8-9095-224ce1ff1cac.png)
-![image](https://user-images.githubusercontent.com/43513525/205562484-b338f492-6007-4133-a67a-f4e91154cccf.png)  
+![image](https://user-images.githubusercontent.com/43513525/205562437-c15be12a-8739-44f6-896d-7602ca498637.png)  
+![image](https://user-images.githubusercontent.com/43513525/205562469-828ee8ca-2d8b-4cc8-9095-224ce1ff1cac.png)  
+![image](https://user-images.githubusercontent.com/43513525/205562484-b338f492-6007-4133-a67a-f4e91154cccf.png)    
 
 In the above plots, the Blue line indicates Kalman filter prediction, the Orange line indicates Measured values and the Green line indicates current Corrected values. We can observe that the Kalman Filter predicted line closely follows the Fusion angles which is more gradual and smooth compared to the Gyroscope angles.
 After testing the algorithm on test data, we tested it in real time. The sensor readings and the GPS readings were read, processed and plotted on Google maps in real time.  
-![image](https://user-images.githubusercontent.com/43513525/205562572-3f673c67-e8f2-4637-b5ce-026869ccc42e.png)
+![image](https://user-images.githubusercontent.com/43513525/205562572-3f673c67-e8f2-4637-b5ce-026869ccc42e.png)  
 
 In the above plot, the green line is the predicted position by our algorithm and the red line the measured position by the GPS module. After ending the program, the data was saved in a csv file for further analysis. 
 Following is the position plot.
-![image](https://user-images.githubusercontent.com/43513525/205562669-35d8c56b-4bf6-4ee4-9aa1-c38b052ed1c9.png)  
+![image](https://user-images.githubusercontent.com/43513525/205562669-35d8c56b-4bf6-4ee4-9aa1-c38b052ed1c9.png)    
 
 The Orange line indicates the GPS measured data and the Blue line indicates the Kalman Filter predicted data. We can observe some spikes in the GPS measured data. This is rectified by considering the previously predicted value as current value if the error is greater than 50 m.
 Following are the velocity plots obtained during real time prediction.
-![image](https://user-images.githubusercontent.com/43513525/205562830-34b9bac9-0b9a-4e6c-b43a-49168bf00e68.png)
-![image](https://user-images.githubusercontent.com/43513525/205562849-3d3a7d3d-8227-41b5-a540-756f0882bec8.png)
-![image](https://user-images.githubusercontent.com/43513525/205562870-553bf25e-4d59-4476-ba31-8370b9b4ab58.png)
+![image](https://user-images.githubusercontent.com/43513525/205562830-34b9bac9-0b9a-4e6c-b43a-49168bf00e68.png)  
+![image](https://user-images.githubusercontent.com/43513525/205562849-3d3a7d3d-8227-41b5-a540-756f0882bec8.png)  
+![image](https://user-images.githubusercontent.com/43513525/205562870-553bf25e-4d59-4476-ba31-8370b9b4ab58.png)  
 
 ## Conclusion
 
