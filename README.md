@@ -66,8 +66,8 @@ The above figure is the position plot using the test data on Google earth. the r
 
 In the above plots, the Blue line indicates Kalman filter prediction, the Orange line indicates Measured values and the Green line indicates current Corrected values.
 Following are the Euler angle plots obtained while predicting the position using  the proposed system.
-![image](https://user-images.githubusercontent.com/43513525/205563556-5700c117-7bfe-4a1c-8054-529532f858a4.png)  
-![image](https://user-images.githubusercontent.com/43513525/205562469-828ee8ca-2d8b-4cc8-9095-224ce1ff1cac.png)  
+![image](https://user-images.githubusercontent.com/43513525/205563661-139168f0-05a6-487e-83e5-152e0b888d23.png)    
+![image](https://user-images.githubusercontent.com/43513525/205563724-69fab9c1-f0c0-4a5d-85d5-4c894527d6c3.png)   
 ![image](https://user-images.githubusercontent.com/43513525/205562484-b338f492-6007-4133-a67a-f4e91154cccf.png)    
 
 In the above plots, the Blue line indicates Kalman filter prediction, the Orange line indicates Measured values and the Green line indicates current Corrected values. We can observe that the Kalman Filter predicted line closely follows the Fusion angles which is more gradual and smooth compared to the Gyroscope angles.
